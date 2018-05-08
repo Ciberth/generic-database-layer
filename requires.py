@@ -20,7 +20,7 @@ class GenericDatabaseClient(Endpoint):
         """
         Return the name of the provided database.
         """
-        return self.all_joined_units.received['database']
+        return self.all_joined_units.received['dbname']
 
     def host(self):
         """
