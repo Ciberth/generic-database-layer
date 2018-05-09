@@ -7,8 +7,14 @@ from charms.reactive import data_changed
 
 class GenericDatabaseClient(Endpoint):
     
+    @when('endpoint.{endpoint_name}.postgresql.available')
+    def _handle_postgresql_available(self):
+        # set same flag?
+       
+
     def request(self, technology):
         #to_publish['technology'] = technology
+        # not ok when 1 consumer-app is in need of multiple generic databases I think
         for relation in self.relations:
             relation.to_publish['technology'] = technology
 

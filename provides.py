@@ -6,11 +6,11 @@ from charms.reactive import when, when_not
 
 class GenericDatabase(Endpoint):
 
-    @when('endpoint.{endpoint_name}.changed')
-    def _handle_changed(self):
+    @when('endpoint.{endpoint_name}.joined')
+    def _handle_joined(self):
         technology = self.all_joined_units.received['technology']
         if technology:
-            flag = '{endpoint_name}.' + technology + '.requested'
+            flag = 'endpoint.{endpoint_name}.' + technology + '.requested'
             set_flag(self.expand_name(flag))
 
     def technology(self):
