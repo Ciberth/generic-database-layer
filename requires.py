@@ -8,7 +8,9 @@ from charms.reactive import data_changed
 class GenericDatabaseClient(Endpoint):
     
     def request(self, technology):
-        to_publish['technology'] = technology
+        #to_publish['technology'] = technology
+        for relation in self.relations:
+            relation.to_publish['technology'] = technology
 
     def technology(self):
         """

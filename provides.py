@@ -17,9 +17,10 @@ class GenericDatabase(Endpoint):
         return self.all_joined_units.received['technology']
 
     def share_details(self, technology, host, dbname, user, password, port):
-        to_publish['technology'] = technology
-        to_publish['host'] = host
-        to_publish['dbname'] = dbname
-        to_publish['user'] = user
-        to_publish['password'] = password
-        to_publish['port'] = port
+        for relation in self.relations:
+            relation.to_publish['technology'] = technology
+            relation.to_publish['host'] = host
+            relation.to_publish['dbname'] = dbname
+            relation.to_publish['user'] = user
+            relation.to_publish['password'] = password
+            relation.to_publish['port'] = port
