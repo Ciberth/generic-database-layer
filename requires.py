@@ -9,7 +9,7 @@ class GenericDatabaseClient(Endpoint):
 
     @when('endpoint.{endpoint_name}.changed')
     def _handle_postgresql_available(self):
-        if self.technology():
+        if self.all_joined_units.received['technology']:
             set_flag(self.expand_name('endpoint.{endpoint_name}.postgresql.available'))
 
     def request(self, technology):
@@ -20,34 +20,34 @@ class GenericDatabaseClient(Endpoint):
         """
         Return the technology of the generic database.
         """
-        return self.all_joined_units.received['details']['technology']
+        return self.all_joined_units.received['technology']
 
     def databasename(self):
         """
         Return the name of the provided database.
         """
-        return self.all_joined_units.received['details']['dbname']
+        return self.all_joined_units.received['dbname']
 
     def host(self):
         """
         Return the host for the provided database.
         """
-        return self.all_joined_units.received['details']['host']
+        return self.all_joined_units.received['host']
 
     def port(self):
         """
         Return the port the provided database.
         """
-        return self.all_joined_units.received['details']['port']
+        return self.all_joined_units.received['port']
 
     def user(self):
         """
         Return the username for the provided database.
         """
-        return self.all_joined_units.received['details']['user']
+        return self.all_joined_units.received['user']
 
     def password(self):
         """
         Return the password for the provided database.
         """
-        return self.all_joined_units.received['details']['password']
+        return self.all_joined_units.received['password']
