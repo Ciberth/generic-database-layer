@@ -6,15 +6,16 @@ from charms.reactive import set_flag, clear_flag
 from charms.reactive import data_changed
 
 class GenericDatabaseClient(Endpoint):
-    
-    #@when('endpoint.{endpoint_name}.postgresql.available')
-    #def _handle_postgresql_available(self):
-    #    set_flag(self.expand_name('endpoint.{endpoint_name}.postgresql.available'))
-       
+    # a test
+    @when('endpoint.{endpoint_name}.changed.details')
+    def _handle_postgresql_available(self):
+        set_flag(self.expand_name('endpoint.{endpoint_name}.postgresql.available'))
+        return self.all_joined_units.received['details']
 
     def request(self, technology):
         #to_publish['technology'] = technology
         # not ok when 1 consumer-app is in need of multiple generic databases I think
+        # from all relations only 1 should be chosen here, how?
         for relation in self.relations:
             relation.to_publish['technology'] = technology
 

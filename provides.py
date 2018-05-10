@@ -14,9 +14,14 @@ class GenericDatabase(Endpoint):
             set_flag(self.expand_name(flag))
 
     #@when('endpoint.{endpoint_name}.postgresql.available')
-    #def _handle_postgresql_availabl(self):
+    #def _handle_postgresql_available(self):
     #    pgsql_details = endpoint_from_flag('endpoint.{endpoint_name}.postgresql.available')
-        
+    
+    @when('endpoint.{endpoint_name}.postgresql.available')
+    def _handle_postgresql_available(self):
+        set_flag('eentestje')
+
+
     def technology(self):
         return self.all_joined_units.received['technology']
 
@@ -31,9 +36,9 @@ class GenericDatabase(Endpoint):
 
         for relation in self.relations:
             relation.to_publish['details'] = details
-            relation.to_publish['technology'] = technology
-            relation.to_publish['host'] = host
-            relation.to_publish['dbname'] = dbname
-            relation.to_publish['user'] = user
-            relation.to_publish['password'] = password
-            relation.to_publish['port'] = port
+            #relation.to_publish['technology'] = technology
+            #relation.to_publish['host'] = host
+            #relation.to_publish['dbname'] = dbname
+            #relation.to_publish['user'] = user
+            #relation.to_publish['password'] = password
+            #relation.to_publish['port'] = port
