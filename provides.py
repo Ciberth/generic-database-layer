@@ -13,11 +13,24 @@ class GenericDatabase(Endpoint):
             flag = 'endpoint.{endpoint_name}.' + technology + '.requested'
             set_flag(self.expand_name(flag))
 
+    #@when('endpoint.{endpoint_name}.postgresql.available')
+    #def _handle_postgresql_availabl(self):
+    #    pgsql_details = endpoint_from_flag('endpoint.{endpoint_name}.postgresql.available')
+        
     def technology(self):
         return self.all_joined_units.received['technology']
 
     def share_details(self, technology, host, dbname, user, password, port):
+        details = {}
+        details['technology'] = technology
+        details['host'] = host
+        details['dbname'] = dbname
+        details['user'] = user
+        details['password'] = password
+        details['port'] = port
+
         for relation in self.relations:
+            relation.to_publish['details'] = details
             relation.to_publish['technology'] = technology
             relation.to_publish['host'] = host
             relation.to_publish['dbname'] = dbname

@@ -7,9 +7,9 @@ from charms.reactive import data_changed
 
 class GenericDatabaseClient(Endpoint):
     
-    @when('endpoint.{endpoint_name}.postgresql.available')
-    def _handle_postgresql_available(self):
-        # set same flag?
+    #@when('endpoint.{endpoint_name}.postgresql.available')
+    #def _handle_postgresql_available(self):
+    #    set_flag(self.expand_name('endpoint.{endpoint_name}.postgresql.available'))
        
 
     def request(self, technology):
