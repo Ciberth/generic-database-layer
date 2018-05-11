@@ -11,11 +11,11 @@ class GenericDatabase(Endpoint):
         technology = self.all_joined_units.received['technology']
         dbname = self.all_joined_units.received['dbname']
         if technology:
-            flag = 'endpoint.{endpoint_name}.' + technology + '.requested'
-            set_flag(self.expand_name(flag))
+            flag_t = 'endpoint.{endpoint_name}.' + technology + '.requested'
+            set_flag(self.expand_name(flag_t))
         if dbname:
-            flag = 'endpoint.{endpoint_name}.' + dbname + '.requested'
-            set_flag(self.expand_name(flag))
+            flag_d = 'endpoint.{endpoint_name}.' + dbname + '.requested'
+            set_flag(self.expand_name(flag_d))
 
     def technology(self):
         return self.all_joined_units.received['technology']
