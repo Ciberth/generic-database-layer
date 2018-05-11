@@ -10,13 +10,17 @@ class GenericDatabaseClient(Endpoint):
     @when('endpoint.{endpoint_name}.changed')
     def _handle_technology_available(self):
         if self.technology():
-            flag = 'endpoint.{endpoint_name}.' + self.technology() + 'available'
+            flag = 'endpoint.{endpoint_name}.' + self.technology() + '.available'
             # Example postgresql: 'endpoint.{endpoint_name}.postgresql.available'
             set_flag(self.expand_name(flag))
 
     def request(self, technology):
         for relation in self.relations:
             relation.to_publish['technology'] = technology
+
+    def connect(self, dbname):
+        for relation in self.relations:
+            relation.to_publish['dbname'] = dbname
 
     def technology(self):
         """

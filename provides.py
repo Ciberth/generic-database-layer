@@ -9,8 +9,12 @@ class GenericDatabase(Endpoint):
     @when('endpoint.{endpoint_name}.joined')
     def _handle_joined(self):
         technology = self.all_joined_units.received['technology']
+        dbname = self.all_joined_units.received['dbname']
         if technology:
             flag = 'endpoint.{endpoint_name}.' + technology + '.requested'
+            set_flag(self.expand_name(flag))
+        if dbname:
+            flag = 'endpoint.{endpoint_name}.' + dbname + '.requested'
             set_flag(self.expand_name(flag))
 
     def technology(self):
